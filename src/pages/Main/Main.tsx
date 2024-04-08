@@ -1,3 +1,5 @@
+import { observer } from "mobx-react-lite";
+
 import { motion } from "framer-motion";
 import { Pagination } from "antd";
 
@@ -6,7 +8,7 @@ import { Input } from "../../shared/ui/Input/Input";
 
 import s from "./Main.module.scss";
 
-export const Main = () => {
+export const Main = observer(() => {
   return (
     <div className="container">
       <motion.div
@@ -37,4 +39,4 @@ export const Main = () => {
       </motion.div>
     </div>
   );
-};
+});
