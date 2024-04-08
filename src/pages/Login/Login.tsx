@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 import { motion } from "framer-motion";
 import { Button } from "../../shared/ui/Button/Button";
-import {Input } from "../../shared/ui/Input/Input"
+import { Input } from "../../shared/ui/Input/Input";
 
 import { IoArrowBackCircleOutline } from "react-icons/io5";
 import s from "./Login.module.scss";
@@ -35,7 +35,9 @@ export const Login = observer(() => {
               <Input placeholder="Username" />
               <Input type="password" placeholder="Password" />
             </div>
-            <Button>Log in</Button>
+            <Link to="/main">
+              <Button>Log in</Button>
+            </Link>
           </div>
         </div>
       </motion.div>
