@@ -1,0 +1,27 @@
+@import url("./styles/Normalize.css");
+
+html {
+  scroll-behavior: smooth;
+
+  body {
+    font-family: "Roboto", sans-serif;
+  }
+}
+
+:root {
+  background-color: #333333;
+
+  .container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 30px;
+    background-color: rgb(77, 77, 77);
+    width: 900px;
+    height: 600px;
+    color: white;
+  }
+}

@@ -1,0 +1,14 @@
+.homeContent {
+  text-align: center;
+
+  h1 {
+    font-size: 50px;
+    color: white;
+  }
+
+  .homeBtns {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+  }
+}
