@@ -35,7 +35,9 @@ export const Login = observer(() => {
               <Input placeholder="Username" />
               <Input type="password" placeholder="Password" />
             </div>
-            <Button>Log in</Button>
+            <Link to="/main">
+              <Button>Log in</Button>
+            </Link>
           </div>
         </div>
       </motion.div>
