@@ -1,3 +1,11 @@
+
+import axios from "axios";
+
+export const baseInstance = axios.create({
+  baseURL: "https://swapi.dev/api",
+  headers: {},
+});
+
 import axios, { AxiosInstance } from "axios";
 import WarningUi from "../ui/WarningUi/WarningUi";
 
@@ -43,3 +51,4 @@ function createSwapiInstance(): AxiosInstance {
 }
 
 export default createSwapiInstance;
+
