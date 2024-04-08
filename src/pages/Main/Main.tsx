@@ -6,7 +6,7 @@ import { Input } from "../../shared/ui/Input/Input";
 import s from "./Main.module.scss";
 import InfoStore from "../../store/base-store";
 import { useEffect } from "react";
-import { typesPeople } from "./../../shared/types/typesPeople";
+
 export const Main = observer(() => {
   const { getPeopleActions, people } = InfoStore;
   useEffect(() => {
@@ -37,21 +37,30 @@ export const Main = observer(() => {
               <Input placeholder="Seacrh" />
             </div>
           </div>
-          <div className={s.mainItems}>
-            {people?.case({
-              pending: () => <h1>Loading...</h1>,
-              rejected: (error) => <h1>Error: {error}</h1>,
-              fulfilled: (data) => (
-                <ul>
-                  {data.map((person: typesPeople, i) => (
-                    <li key={i}>{person.name}</li>
-                  ))}
-                </ul>
-              ),
-            })}
-          </div>
-          <div className={s.mainPagination}>
-            <Pagination defaultCurrent={1} total={30} />
+          <div className={s.mainContent}>
+            <div className={s.mainItems}>
+              {people?.case({
+                pending: () => <h1>Loading...</h1>,
+                rejected: (error) => <h1>Error: {error}</h1>,
+                fulfilled: (data) => (
+                  <div className={s.mainItems}>
+                    {data.map((person, i) => (
+                      <div key={i} className={s.mainCard}>
+                        <div className={s.mainCardText}>
+                          <div>Name: {person.name}</div>
+                          <div>Height: {person.height}</div>
+                          <div>Mass: {person.mass}</div>
+                          <div>Gender: {person.gender}</div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                ),
+              })}
+            </div>
+            <div className={s.mainPagination}>
+              <Pagination defaultCurrent={1} total={30} />
+            </div>
           </div>
         </div>
       </motion.div>
