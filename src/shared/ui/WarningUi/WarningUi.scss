@@ -1,0 +1,42 @@
+$color-error: #f44336;
+$color-warning: #ff9800;
+$color-info: #2196f3;
+$color-error-border: #d32f2f;
+$color-warning-border: #f57c00;
+$color-info-border: #1976d2;
+$text-color: white;
+
+.warningUi {
+  padding: 1rem;
+  margin: 1rem 0;
+  border-radius: 0.5rem;
+  font-family: "Arial", sans-serif;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: $text-color;
+
+  &.error {
+    background-color: $color-error;
+    border: 1px solid $color-error-border;
+  }
+
+  &.warning {
+    background-color: $color-warning;
+    border: 1px solid $color-warning-border;
+  }
+
+  &.info {
+    background-color: $color-info;
+    border: 1px solid $color-info-border;
+  }
+
+  .message {
+    font-size: 1.2rem;
+  }
+
+  .subtitle {
+    font-size: 0.9rem;
+    opacity: 0.8;
+  }
+}
