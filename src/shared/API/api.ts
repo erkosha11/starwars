@@ -9,8 +9,7 @@ export const getPeople = async (): Promise<ApiResponse<typesPeople>> => {
 };
 
 export const getStarShips = async (): Promise<ApiResponse<typeStarShip>> => {
-  const response = await baseInstance.get<ApiResponse<typeStarShip>>(
-    "/starships"
-  );
+  const response =
+    await baseInstance.get<ApiResponse<typeStarShip>>("/starships");
   return response.data;
 };
