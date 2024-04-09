@@ -6,6 +6,7 @@ import { Input } from "../../shared/ui/Input/Input";
 import s from "./Main.module.scss";
 import InfoStore from "../../store/base-store";
 import { useEffect } from "react";
+import { Link } from "react-router-dom";
 
 export const Main = observer(() => {
   const { getPeopleActions, people } = InfoStore;
@@ -44,8 +45,9 @@ export const Main = observer(() => {
                 rejected: (error) => <h1>Error: {error}</h1>,
                 fulfilled: (data) => (
                   <div className={s.mainItems}>
-                    {data.map((person, i) => (
-                      <div key={i} className={s.mainCard}>
+                  {data.map((person, i) => (
+                    <Link key={i} to={`/person/${i}`}>
+                      <div className={s.mainCard}>
                         <div className={s.mainCardText}>
                           <div>Name: {person.name}</div>
                           <div>Height: {person.height}</div>
@@ -53,11 +55,12 @@ export const Main = observer(() => {
                           <div>Gender: {person.gender}</div>
                         </div>
                       </div>
-                    ))}
-                  </div>
-                ),
-              })}
-            </div>
+                    </Link>
+                  ))}
+                </div>
+              ),
+            })}
+          </div>
             <div className={s.mainPagination}>
               <Pagination defaultCurrent={1} total={30} />
             </div>

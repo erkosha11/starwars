@@ -30,6 +30,12 @@
       flex-direction: column;
       gap: 10px;
       margin-bottom: 10px;
+
+      span {
+        display: flex;
+        font-size: 13px;
+        color: red;
+      }
     }
   }
 }
