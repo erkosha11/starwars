@@ -3,20 +3,23 @@ import { observer } from "mobx-react-lite";
 import InfoStore from "../../store/base-store";
 import s from "./PersonDetail.module.scss";
 import { IoArrowBackCircleOutline } from "react-icons/io5";
+import FilmsDetail from "./films/films.deteils";
+import { Button } from "../../shared/ui/Button/Button";
 const PersonDetails = observer(() => {
   const { id } = useParams<{ id: string | undefined }>();
   const index = parseInt(id || "", 10);
 
   const { people } = InfoStore;
 
-  if (!people) return null;
+  if (!people || people.state === "pending") return <div>Loading...</div>;
+  if (people.state === "rejected") return <div>OOPSSS... IT'S ERROR...</div>;
 
-  const person = people.state === "fulfilled" ? people.value[index] : null;
+  const person = people.value[index];
 
   if (!person) return <div>Person not found</div>;
 
   return (
-    <div className="container">
+    <div className="container" style={{ justifyContent: "space-between" }}>
       <div className={s.detailContent}>
         <div className={s.detailTitle}>
           <Link to="/people-page">
@@ -37,10 +40,16 @@ const PersonDetails = observer(() => {
             <p>Eye color: {person.eye_color}</p>
             <p>Birth year: {person.birth_year}</p>
             <p>Gender: {person.gender}</p>
-            <p>Homeworld: {person.homeworld}</p>
           </div>
         </div>
       </div>
+      {InfoStore.displayedFilms.map((film, index) => (
+        <FilmsDetail key={index} film={film} />
+      ))}
+      {InfoStore.films?.state === "fulfilled" &&
+        InfoStore.displayedFilmsCount < InfoStore.films.value.length && (
+          <Button onClick={() => InfoStore.showMoreFilms()}>ЕЩЕ</Button>
+        )}
     </div>
   );
 });
