@@ -5,13 +5,15 @@ html {
 
   body {
     font-family: "Roboto", sans-serif;
+    display: flex;
+    justify-content: center;
   }
 }
 
 :root {
   background-color: #333333;
 
-  .container{
+  .container {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -21,7 +23,9 @@ html {
     border-radius: 30px;
     background-color: rgb(77, 77, 77);
     width: 900px;
-    height: 600px;
+    min-height: 600px;
+    height: 100%;
     color: white;
+    gap: 30px;
   }
 }

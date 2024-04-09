@@ -1,14 +1,18 @@
 .detailContent {
   display: flex;
-flex-direction: column;
+  flex-direction: column;
+  border: 1px solid rgb(255, 255, 255);
+  padding: 10px;
+  border-radius: 20px;
   .detailTitle {
     display: flex;
     justify-content: flex-start;
+    gap: 10px;
   }
 
   .detailsText {
     display: flex;
     justify-content: center;
-    gap: 80px;
+    gap: 20px;
   }
 }
