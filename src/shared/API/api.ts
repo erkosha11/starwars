@@ -13,3 +13,9 @@ export const getStarShips = async (): Promise<ApiResponse<typeStarShip>> => {
     await baseInstance.get<ApiResponse<typeStarShip>>("/starships");
   return response.data;
 };
+
+getPeople().then((people) => {
+  console.log("People:", people);
+}).catch((error) => {
+  console.error("Error fetching people:", error);
+});
