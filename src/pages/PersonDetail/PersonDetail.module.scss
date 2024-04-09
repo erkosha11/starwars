@@ -1,0 +1,14 @@
+.detailContent {
+  display: flex;
+flex-direction: column;
+  .detailTitle {
+    display: flex;
+    justify-content: flex-start;
+  }
+
+  .detailsText {
+    display: flex;
+    justify-content: center;
+    gap: 80px;
+  }
+}

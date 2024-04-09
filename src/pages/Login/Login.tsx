@@ -1,5 +1,5 @@
 import { observer } from "mobx-react-lite";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import { motion } from "framer-motion";
 import { IoArrowBackCircleOutline } from "react-icons/io5";
@@ -10,7 +10,14 @@ import { Input } from "../../shared/ui/Input/Input";
 import { inputStore } from "../../store/login-store";
 
 export const Login = observer(() => {
-  const { inpData, inpDataErr, updateInpData, clickHandler } = inputStore;
+
+  const { inpData, inpDataErr, updateInpData } = inputStore;
+
+  const navigate = useNavigate();
+  const handleClick = () => {
+    inputStore.clickHandler(navigate);
+  };
+
 
   return (
     <div className="container">
@@ -38,7 +45,9 @@ export const Login = observer(() => {
               <Input
                 name="login"
                 type="text"
-                onChange={(e) => updateInpData(e.target.name, e.target.value)}
+                onChange={(e) =>
+                  updateInpData(e.target.name, e.target.value)
+                }
                 placeholder="Username"
                 value={inpData.login}
                 maxLength={20}
@@ -50,7 +59,9 @@ export const Login = observer(() => {
                 name="password"
                 type="password"
                 placeholder="Password"
-                onChange={(e) => updateInpData(e.target.name, e.target.value)}
+                onChange={(e) =>
+                  updateInpData(e.target.name, e.target.value)
+                }
                 value={inpData.password}
                 maxLength={20}
               />
@@ -58,8 +69,9 @@ export const Login = observer(() => {
                 <span className={s.err}>{inpDataErr.passwordErr}</span>
               )}
             </div>
-            <Button onClick={() => clickHandler()}>Log in</Button>
-            <Link to="/people-page"></Link>
+            <Button onClick={handleClick}>Log in</Button>
+            <Link to="/main"></Link>
+
           </div>
         </div>
       </motion.div>
