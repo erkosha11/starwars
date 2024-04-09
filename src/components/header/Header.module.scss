@@ -1,0 +1,13 @@
+.Header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+
+  width: 100%;
+
+  .headerBtns {
+    display: flex;
+    gap: 30px;
+  }
+}

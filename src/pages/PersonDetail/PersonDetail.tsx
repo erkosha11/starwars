@@ -1,7 +1,8 @@
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { observer } from "mobx-react-lite";
 import InfoStore from "../../store/base-store";
 import s from "./PersonDetail.module.scss";
+import { IoArrowBackCircleOutline } from "react-icons/io5";
 const PersonDetails = observer(() => {
   const { id } = useParams<{ id: string | undefined }>();
   const index = parseInt(id || "", 10);
@@ -18,6 +19,11 @@ const PersonDetails = observer(() => {
     <div className="container">
       <div className={s.detailContent}>
         <div className={s.detailTitle}>
+          <Link to="/people-page">
+            <h2>
+              <IoArrowBackCircleOutline />
+            </h2>
+          </Link>
           <h1>{person.name}</h1>
         </div>
         <div className={s.detailsText}>

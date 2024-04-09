@@ -1,12 +1,14 @@
 import { useState, useEffect } from "react";
 import { observer } from "mobx-react-lite";
-import { Pagination } from "antd";
-import InfoStore from "../../store/base-store";
-import { Button } from "../../shared/ui/Button/Button";
-import { Input } from "../../shared/ui/Input/Input";
-import s from "./Main.module.scss";
 import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
+
+import { Pagination } from "antd";
+import s from "./PeoplePage.module.scss";
+
+import { AnimatedBox } from "../../components/AnimatedBox/AnimatedBox";
+import { Header } from "../../components/header/Header";
+
+import InfoStore from "../../store/base-store";
 
 const PeoplePage = observer(() => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -33,38 +35,24 @@ const PeoplePage = observer(() => {
 
   return (
     <div className="container">
-      <motion.div
-        className="box"
-        initial={{ opacity: 0, scale: 0.5 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{
-          duration: 0.8,
-          delay: 0.1,
-          ease: [0, 0.71, 0.2, 1.01],
-        }}
-      >
+      <AnimatedBox>
         <div className={s.mainContent}>
-          <div className={s.mainHeader}>
-            <div className={s.mainbtns}>
-              <Button>People</Button>
-              <Button>Starship</Button>
-            </div>
-            <div className={s.mainSearch}>
-              <Input placeholder="Search" />
-            </div>
-          </div>
+          <Header />
           <div className={s.mainContent}>
             <div className={s.mainItems}>
               {InfoStore.people?.state === "fulfilled" &&
                 cardsToShow(currentPage).map((person, i) => (
-                  <Link key={i} to={`/person/${i}`}>
-                    {" "}
+                  <Link
+                    key={i}
+                    to={`/person/${i}`}
+                    style={{ textDecoration: "none", color: "inherit" }}
+                  >
                     <div className={s.mainCard}>
                       <div className={s.mainCardText}>
-                        <div>Name: {person.name}</div>
-                        <div>Height: {person.height}</div>
-                        <div>Mass: {person.mass}</div>
-                        <div>Gender: {person.gender}</div>
+                        <h1>{person.name}</h1>
+                        <p>Height: {person.height}</p>
+                        <p>Mass: {person.mass}</p>
+                        <p>Gender: {person.gender}</p>
                       </div>
                     </div>
                   </Link>
@@ -80,7 +68,7 @@ const PeoplePage = observer(() => {
             </div>
           </div>
         </div>
-      </motion.div>
+      </AnimatedBox>
     </div>
   );
 });

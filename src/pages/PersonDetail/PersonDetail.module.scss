@@ -1,9 +1,21 @@
 .detailContent {
   display: flex;
-flex-direction: column;
+  flex-direction: column;
+
   .detailTitle {
+    width: 600px;
+
     display: flex;
-    justify-content: flex-start;
+    flex-direction: row;
+    gap: 20px;
+    align-items: center;
+    text-align: center;
+
+    h2 {
+      color: white;
+      font-size: 50px;
+      margin: 0;
+    }
   }
 
   .detailsText {
