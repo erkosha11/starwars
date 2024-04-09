@@ -29,7 +29,7 @@ class InputStore {
   clickHandler = (navigateCallback: Function) => {
     this.validateData();
     if (Object.values(this.inpDataErr).some((i) => i !== "")) return;
-    navigateCallback("/main");
+    navigateCallback("/people-page");
   };
 
   validateData = () => {

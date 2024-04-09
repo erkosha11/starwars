@@ -1,22 +1,14 @@
 import { Link } from "react-router-dom";
 import s from "./Home.module.scss";
-import { motion } from "framer-motion";
 
+
+import { AnimatedBox } from "../../components/AnimatedBox/AnimatedBox";
 import { Button } from "../../shared/ui/Button/Button";
 export const Home = () => {
   return (
     <>
       <div className="container">
-        <motion.div
-          className="box"
-          initial={{ opacity: 0, scale: 0.5 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{
-            duration: 0.8,
-            delay: 0.1,
-            ease: [0, 0.71, 0.2, 1.01],
-          }}
-        >
+        <AnimatedBox>
           <div className={s.homeContent}>
             <h1>Welcome to Star Wars</h1>
             <div className={s.homeBtns}>
@@ -28,7 +20,7 @@ export const Home = () => {
               </Link>
             </div>
           </div>
-        </motion.div>
+        </AnimatedBox>
       </div>
     </>
   );

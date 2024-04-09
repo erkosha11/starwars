@@ -3,7 +3,7 @@ import "./App.scss";
 import { Home } from "../pages/Home/Home";
 import { Signup } from "../pages/Signup/Signup";
 import { Login } from "../pages/Login/Login";
-import PeoplePage from "../pages/Main/Main";
+import PeoplePage from "../pages/PeoplePage/PeoplePage";
 import PersonDetails from "../pages/PersonDetail/PersonDetail";
 
 function App() {
