@@ -29,7 +29,7 @@ class SignUpStore {
       [key + "Err"]: "",
     };
     this.inpData[key] = value;
-    if (key === 'password' && this.inpData.confirmpassword !== "") {
+    if (key === "password" && this.inpData.confirmpassword !== "") {
       this.validateData();
     }
   };
@@ -49,8 +49,9 @@ class SignUpStore {
     if (this.inpData.password === "")
       this.inpDataErr.passwordErr = "Пароль не может быть пустым";
     else if (
-      !/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d\S]+$/.test(this.inpData.password)
+      !/^(?=.*[a-zA-Z])(?=.*\d)(?=.*[\W_])[a-zA-Z\d\W_]{6,}$/.test(this.inpData.password)
     )
+    
       this.inpDataErr.passwordErr = "Ваш пароль слишком простой";
 
     if (this.inpData.confirmpassword === "")
