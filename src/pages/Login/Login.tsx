@@ -7,10 +7,10 @@ import s from "./Login.module.scss";
 
 import { Button } from "../../shared/ui/Button/Button";
 import { Input } from "../../shared/ui/Input/Input";
-import { inputStore  } from "../../store/login-store";
+import { inputStore } from "../../store/login-store";
 
 export const Login = observer(() => {
-  const { inpData, inpDataErr, updateInpData, clickHandler } = inputStore
+  const { inpData, inpDataErr, updateInpData, clickHandler } = inputStore;
 
   return (
     <div className="container">
@@ -58,9 +58,8 @@ export const Login = observer(() => {
                 <span className={s.err}>{inpDataErr.passwordErr}</span>
               )}
             </div>
-              <Button onClick={() => clickHandler()}>Log in</Button>
-            <Link to="/main">
-            </Link>
+            <Button onClick={() => clickHandler()}>Log in</Button>
+            <Link to="/people-page"></Link>
           </div>
         </div>
       </motion.div>

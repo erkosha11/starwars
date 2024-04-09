@@ -1,20 +1,35 @@
+import { useState, useEffect } from "react";
 import { observer } from "mobx-react-lite";
-import { motion } from "framer-motion";
 import { Pagination } from "antd";
+import InfoStore from "../../store/base-store";
 import { Button } from "../../shared/ui/Button/Button";
 import { Input } from "../../shared/ui/Input/Input";
 import s from "./Main.module.scss";
-import InfoStore from "../../store/base-store";
-import { useEffect } from "react";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 
-export const Main = observer(() => {
-  const { getPeopleActions, people } = InfoStore;
+const PeoplePage = observer(() => {
+  const [currentPage, setCurrentPage] = useState(1);
+
   useEffect(() => {
-    getPeopleActions();
+    InfoStore.getPeopleActions();
   }, []);
 
-  if (!people) null;
+  const cardsToShow = (page: number) => {
+    if (InfoStore.people?.state === "fulfilled") {
+      const totalCards = InfoStore.people.value.length;
+      const perPage = page < 3 ? 4 : totalCards % 8;
+      return InfoStore.people.value.slice(
+        (page - 1) * 4,
+        (page - 1) * 4 + perPage
+      );
+    }
+    return [];
+  };
+
+  const handleChangePage = (page: number) => {
+    setCurrentPage(page);
+  };
 
   return (
     <div className="container">
@@ -35,34 +50,33 @@ export const Main = observer(() => {
               <Button>Starship</Button>
             </div>
             <div className={s.mainSearch}>
-              <Input placeholder="Seacrh" />
+              <Input placeholder="Search" />
             </div>
           </div>
           <div className={s.mainContent}>
             <div className={s.mainItems}>
-              {people?.case({
-                pending: () => <h1>Loading...</h1>,
-                rejected: (error) => <h1>Error: {error}</h1>,
-                fulfilled: (data) => (
-                  <div className={s.mainItems}>
-                  {data.map((person, i) => (
-                    <Link key={i} to={`/person/${i}`}>
-                      <div className={s.mainCard}>
-                        <div className={s.mainCardText}>
-                          <div>Name: {person.name}</div>
-                          <div>Height: {person.height}</div>
-                          <div>Mass: {person.mass}</div>
-                          <div>Gender: {person.gender}</div>
-                        </div>
+              {InfoStore.people?.state === "fulfilled" &&
+                cardsToShow(currentPage).map((person, i) => (
+                  <Link key={i} to={`/person/${i}`}>
+                    {" "}
+                    <div className={s.mainCard}>
+                      <div className={s.mainCardText}>
+                        <div>Name: {person.name}</div>
+                        <div>Height: {person.height}</div>
+                        <div>Mass: {person.mass}</div>
+                        <div>Gender: {person.gender}</div>
                       </div>
-                    </Link>
-                  ))}
-                </div>
-              ),
-            })}
-          </div>
+                    </div>
+                  </Link>
+                ))}
+            </div>
             <div className={s.mainPagination}>
-              <Pagination defaultCurrent={1} total={30} />
+              <Pagination
+                current={currentPage}
+                onChange={handleChangePage}
+                total={30}
+                pageSize={10}
+              />
             </div>
           </div>
         </div>
@@ -70,3 +84,5 @@ export const Main = observer(() => {
     </div>
   );
 });
+
+export default PeoplePage;

@@ -1,6 +1,6 @@
 import { makeAutoObservable } from "mobx";
 import { fromPromise, IPromiseBasedObservable } from "mobx-utils";
-import { getPeople, getStarShips } from "../shared/api/api";
+import { getPeople, getStarShips } from "../shared/API/api";
 import { typesPeople } from "../shared/types/typesPeople";
 import { typeStarShip } from "../shared/types/typesShips";
 
