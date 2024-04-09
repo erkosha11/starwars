@@ -10,12 +10,14 @@ import { Input } from "../../shared/ui/Input/Input";
 import { inputStore } from "../../store/login-store";
 
 export const Login = observer(() => {
+
   const { inpData, inpDataErr, updateInpData } = inputStore;
 
   const navigate = useNavigate();
   const handleClick = () => {
     inputStore.clickHandler(navigate);
   };
+
 
   return (
     <div className="container">
@@ -69,6 +71,7 @@ export const Login = observer(() => {
             </div>
             <Button onClick={handleClick}>Log in</Button>
             <Link to="/main"></Link>
+
           </div>
         </div>
       </motion.div>
