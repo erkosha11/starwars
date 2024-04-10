@@ -19,12 +19,16 @@ export const Starship = observer(() => {
     StarShipStore.setCurrentPage(page);
   };
 
+  const handleSearch = (text: string) => {
+    StarShipStore.setSearchText(text);
+  };
+
   return (
     <div className="container">
-      <AnimatedBox>
-        <div className={s.starship}>
-          <Header />
-          <div className={s.starshipContent}>
+      <div className={s.starship}>
+        <Header onSearch={handleSearch} />
+        <div className={s.starshipContent}>
+          <AnimatedBox>
             <div className={s.starshipItems}>
               {StarShipStore.getDisplayedStarship().map((person, index) => (
                 <Link
@@ -43,17 +47,17 @@ export const Starship = observer(() => {
                 </Link>
               ))}
             </div>
-            <div className={s.mainPagination}>
-              <Pagination
-                total={StarShipStore.starship.length}
-                pageSize={StarShipStore.pageSize}
-                current={StarShipStore.currentPage}
-                onChange={handlePageChange}
-              />
-            </div>
+          </AnimatedBox>
+          <div className={s.mainPagination}>
+            <Pagination
+              total={StarShipStore.starship.length}
+              pageSize={StarShipStore.pageSize}
+              current={StarShipStore.currentPage}
+              onChange={handlePageChange}
+            />
           </div>
         </div>
-      </AnimatedBox>
+      </div>
     </div>
   );
 });
