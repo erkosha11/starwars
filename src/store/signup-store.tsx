@@ -43,15 +43,16 @@ class SignUpStore {
   validateData = () => {
     if (this.inpData.login === "")
       this.inpDataErr.loginErr = "Логин не может быть пустым";
-    else if (!/^(?=.*[A-Za-z])(?=.*\d)?[A-Za-z\d]+$/.test(this.inpData.login))
+    else if (!/^[A-Z][a-z]{5,}\d*$/.test(this.inpData.login))
       this.inpDataErr.loginErr = "Некорретный логин";
 
     if (this.inpData.password === "")
       this.inpDataErr.passwordErr = "Пароль не может быть пустым";
     else if (
-      !/^(?=.*[a-zA-Z])(?=.*\d)(?=.*[\W_])[a-zA-Z\d\W_]{6,}$/.test(this.inpData.password)
+      !/^(?=.*[a-zA-Z])(?=.*\d)(?=.*[\W_])[a-zA-Z\d\W_]{6,}$/.test(
+        this.inpData.password
+      )
     )
-    
       this.inpDataErr.passwordErr = "Ваш пароль слишком простой";
 
     if (this.inpData.confirmpassword === "")
