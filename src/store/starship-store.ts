@@ -6,6 +6,7 @@ class StarShipStore {
   starship: typeStarShip[] = [];
   currentPage: number = 1;
   pageSize: number = 4;
+  searchText: string = '';
 
   constructor() {
     makeAutoObservable(this);
@@ -24,15 +25,21 @@ class StarShipStore {
   }
 
   getDisplayedStarship() {
+    const filteredStarship = this.starship.filter(ship =>
+      ship.name.toLowerCase().includes(this.searchText.toLowerCase())
+    );
     const startIndex = (this.currentPage - 1) * this.pageSize;
     const endIndex = startIndex + this.pageSize;
-    return this.starship.slice(startIndex, endIndex);
+    return filteredStarship.slice(startIndex, endIndex);
   }
 
   setCurrentPage(page: number) {
     this.currentPage = page;
   }
 
+  setSearchText(text: string) {
+    this.searchText = text;
+  }
 
   getTotalPages() {
     return Math.ceil(this.starship.length / this.pageSize);

@@ -16,12 +16,16 @@ export const PeopleTestpage = observer(() => {
     peopleStore.setCurrentPage(page);
   };
 
+  const handleSearch = (text: string) => {
+    peopleStore.setSearchText(text);
+  };
+
   return (
     <div className="container">
-      <AnimatedBox>
-        <div className={s.mainsContent}>
-          <Header />
-          <div className={s.mainContent}>
+      <div className={s.mainsContent}>
+        <Header onSearch={handleSearch} />
+        <div className={s.mainContent}>
+          <AnimatedBox>
             <div className={s.mainItems}>
               {peopleStore.getDisplayedPeople().map((person, index) => (
                 <Link
@@ -40,17 +44,17 @@ export const PeopleTestpage = observer(() => {
                 </Link>
               ))}
             </div>
-            <div className={s.mainPagination}>
-              <Pagination
-                total={peopleStore.people.length}
-                pageSize={peopleStore.pageSize}
-                current={peopleStore.currentPage}
-                onChange={handlePageChange}
-              />
-            </div>
+          </AnimatedBox>
+          <div className={s.mainPagination}>
+            <Pagination
+              total={peopleStore.people.length}
+              pageSize={peopleStore.pageSize}
+              current={peopleStore.currentPage}
+              onChange={handlePageChange}
+            />
           </div>
         </div>
-      </AnimatedBox>
+      </div>
     </div>
   );
 });

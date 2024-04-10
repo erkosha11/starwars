@@ -6,6 +6,7 @@ class PeopleStore {
   people: typesPeople[] = [];
   currentPage: number = 1;
   pageSize: number = 4;
+  searchText: string = '';
 
   constructor() {
     makeAutoObservable(this);
@@ -24,15 +25,21 @@ class PeopleStore {
   }
 
   getDisplayedPeople() {
+    const filteredPeople = this.people.filter(person =>
+      person.name.toLowerCase().includes(this.searchText.toLowerCase())
+    );
     const startIndex = (this.currentPage - 1) * this.pageSize;
     const endIndex = startIndex + this.pageSize;
-    return this.people.slice(startIndex, endIndex);
+    return filteredPeople.slice(startIndex, endIndex);
   }
 
   setCurrentPage(page: number) {
     this.currentPage = page;
   }
 
+  setSearchText(text: string) {
+    this.searchText = text;
+  }
 
   getTotalPages() {
     return Math.ceil(this.people.length / this.pageSize);

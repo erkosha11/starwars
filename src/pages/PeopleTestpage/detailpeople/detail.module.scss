@@ -2,29 +2,31 @@
   display: flex;
   flex-direction: column;
 
-  border: 1px solid rgb(255, 255, 255);
-  padding: 10px;
-  border-radius: 20px;
-  .detailTitle {
-    width: 600px;
+  width: 800px;
+  height: 600px;
 
+  .Header {
     display: flex;
-    flex-direction: row;
+    justify-content: space-between;
     align-items: center;
-    text-align: center;
+    gap: 15px;
 
-    h2 {
-      color: white;
-      font-size: 50px;
-      margin: 0;
+    width: 100%;
+
+    .headerBtns {
+      display: flex;
+      gap: 30px;
+      padding-bottom: 10px;
     }
-    justify-content: flex-start;
-    gap: 10px;
   }
 
   .detailsText {
     display: flex;
     justify-content: center;
-    gap: 20px;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    width: 800px;
+    height: 540px;
   }
 }

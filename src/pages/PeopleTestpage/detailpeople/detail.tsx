@@ -3,6 +3,8 @@ import { observer } from "mobx-react-lite";
 import s from "./detail.module.scss";
 import { IoArrowBackCircleOutline } from "react-icons/io5";
 import peopleStore from "../../../store/test-store";
+import { AnimatedBox } from "../../../components/AnimatedBox/AnimatedBox";
+import { Button } from "../../../shared/ui/Button/Button";
 
 export const PeopleDetails = observer(() => {
   const { index } = useParams<{ index?: string }>();
@@ -16,27 +18,34 @@ export const PeopleDetails = observer(() => {
   return (
     <div className="container">
       <div className={s.detailContent}>
-        <div className={s.detailTitle}>
-          <Link to="/peopletest">
-            <h2>
-              <IoArrowBackCircleOutline />
-            </h2>
-          </Link>
-          <h1>{person.name}</h1>
-        </div>
-        <div className={s.detailsText}>
-          <div>
-            <p>Height: {person.height}</p>
-            <p>Mass: {person.mass}</p>
-            <p>Hair color: {person.hair_color}</p>
-            <p>Skin color: {person.skin_color}</p>
+        <div className={s.Header}>
+          <div className={s.headerBtns}>
+            <Link to="/peopletest">
+              <Button>People</Button>
+            </Link>
+            <Link to="/starship">
+              <Button>Starship</Button>
+            </Link>
           </div>
-          <div>
-            <p>Eye color: {person.eye_color}</p>
-            <p>Birth year: {person.birth_year}</p>
-            <p>Gender: {person.gender}</p>
+          <div className={s.headerTitle}>
+            <h1>{person.name}</h1>
           </div>
         </div>
+        <AnimatedBox>
+          <div className={s.detailsText}>
+            <div>
+              <p>Height: {person.height}</p>
+              <p>Mass: {person.mass}</p>
+              <p>Hair color: {person.hair_color}</p>
+              <p>Skin color: {person.skin_color}</p>
+            </div>
+            <div>
+              <p>Eye color: {person.eye_color}</p>
+              <p>Birth year: {person.birth_year}</p>
+              <p>Gender: {person.gender}</p>
+            </div>
+          </div>
+        </AnimatedBox>
       </div>
     </div>
   );
