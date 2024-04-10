@@ -29,13 +29,13 @@ class InputStore {
   clickHandler = (navigateCallback: Function) => {
     this.validateData();
     if (Object.values(this.inpDataErr).some((i) => i !== "")) return;
-    navigateCallback("/people-page");
+    navigateCallback("/peopletest");
   };
 
   validateData = () => {
     if (this.inpData.login === "")
       this.inpDataErr.loginErr = "Логин не может быть пустым";
-    else if (!/^(?=.*[A-Za-z])(?=.*\d)?[A-Za-z\d]+$/.test(this.inpData.login))
+    else if (!/^[A-Z][a-z]{5,}\d*$/.test(this.inpData.login))
       this.inpDataErr.loginErr = "Некорретный логин";
 
     if (this.inpData.password === "")
