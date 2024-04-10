@@ -5,7 +5,6 @@ import { typeStarShip } from "../types/typesShips";
 import { baseInstance } from "./base";
 
 export const getPeople = async (): Promise<ApiResponse<typesPeople>> => {
-  
   const response = await baseInstance.get<ApiResponse<typesPeople>>("/people");
   return response.data;
 };
@@ -16,8 +15,6 @@ export const getStarShips = async (): Promise<ApiResponse<typeStarShip>> => {
   return response.data;
 };
 export const getFilms = async (): Promise<ApiResponse<typeFilms>> => {
-  const response =
-    await baseInstance.get<ApiResponse<typeFilms>>("/films");
+  const response = await baseInstance.get<ApiResponse<typeFilms>>("/films");
   return response.data;
 };
-

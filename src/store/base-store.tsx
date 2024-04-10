@@ -23,7 +23,7 @@ class InfoStore {
   }
 
   async getPeopleActions() {
-    const peoplePromise = getPeople().then((response) => response.results); 
+    const peoplePromise = getPeople().then((response) => response.results);
     this.people = fromPromise(peoplePromise);
   }
 
@@ -33,7 +33,7 @@ class InfoStore {
   }
 
   async getFilmsActions() {
-    const filmsPromise = getFilms().then((response) => response.results); 
+    const filmsPromise = getFilms().then((response) => response.results);
     this.films = fromPromise(filmsPromise);
   }
 
