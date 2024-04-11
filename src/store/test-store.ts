@@ -7,6 +7,7 @@ class PeopleStore {
   currentPage: number = 1;
   pageSize: number = 4;
   searchText: string = '';
+  loading: boolean = true;
 
   constructor() {
     makeAutoObservable(this);
@@ -18,9 +19,13 @@ class PeopleStore {
       const response = await getPeople();
       runInAction(() => {
         this.people = response.results;
+        this.loading = false;
       });
     } catch (error) {
       console.error("Error fetching people:", error);
+      runInAction(() => {
+        this.loading = false;
+      });
     }
   }
 

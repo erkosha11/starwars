@@ -16,10 +16,10 @@ class InfoStore {
     this.initStore();
   }
 
-  async initStore() {
-    await this.getPeopleActions();
-    await this.getStarShipsActions();
-    await this.getFilmsActions();
+  initStore() {
+    this.getPeopleActions();
+    this.getStarShipsActions();
+    this.getFilmsActions();
   }
 
   async getPeopleActions() {
