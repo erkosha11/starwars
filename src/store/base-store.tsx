@@ -17,6 +17,7 @@ class EntityStore {
     this.fetchStarShips();
   }
 
+
   fetchPeople() {
     const peoplePromise = getPeople().then((response) => response.results);
     this.people = fromPromise(peoplePromise);

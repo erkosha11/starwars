@@ -7,6 +7,7 @@ class StarShipStore {
   currentPage: number = 1;
   pageSize: number = 4;
   searchText: string = '';
+  loading: boolean = true;
 
   constructor() {
     makeAutoObservable(this);
@@ -18,11 +19,15 @@ class StarShipStore {
       const response = await getStarShips();
       runInAction(() => {
         this.starship = response.results;
+        this.loading = false;
       });
     } catch (error) {
       console.error("Error fetching starship:", error);
-    }
+      runInAction(() => {
+        this.loading = false;
+    });
   }
+}
 
   getDisplayedStarship() {
     const filteredStarship = this.starship.filter(ship =>

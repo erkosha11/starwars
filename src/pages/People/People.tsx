@@ -1,11 +1,12 @@
 import { observer } from "mobx-react-lite";
 import { useEffect } from "react";
+import { Link } from "react-router-dom";
 import { Pagination } from "antd";
 import s from "./People.module.scss";
 import { AnimatedBox } from "../../components/AnimatedBox/AnimatedBox";
 import { Header } from "../../components/header/Header";
+import Skeleton from "../../shared/ui/Skeleton/Skeleton";
 import peopleStore from "../../store/test-store";
-import { Link } from "react-router-dom";
 
 export const People = observer(() => {
   useEffect(() => {
@@ -27,22 +28,28 @@ export const People = observer(() => {
         <div className={s.mainContent}>
           <AnimatedBox>
             <div className={s.mainItems}>
-              {peopleStore.getDisplayedPeople().map((person, index) => (
-                <Link
-                  to={`/people/${index}`}
-                  style={{ textDecoration: "none", color: "inherit" }}
-                  key={index}
-                >
-                  <div className={s.mainCard}>
-                    <div className={s.mainCardText}>
-                      <h1>{person.name}</h1>
-                      <p>Height: {person.height}</p>
-                      <p>Mass: {person.mass}</p>
-                      <p>Gender: {person.gender}</p>
-                    </div>
-                  </div>
-                </Link>
-              ))}
+              <div>
+                {peopleStore.loading
+                  ? [...new Array(4)].map((_, index) => (
+                      <Skeleton key={index} />
+                    ))
+                  : peopleStore.getDisplayedPeople().map((person, index) => (
+                      <Link
+                        to={`/people/${index}`}
+                        style={{ textDecoration: "none", color: "inherit" }}
+                        key={index}
+                      >
+                        <div className={s.mainCard}>
+                          <div className={s.mainCardText}>
+                            <h1>{person.name}</h1>
+                            <p>Рост: {person.height}</p>
+                            <p>Масса: {person.mass}</p>
+                            <p>Пол: {person.gender}</p>
+                          </div>
+                        </div>
+                      </Link>
+                    ))}
+              </div>
             </div>
           </AnimatedBox>
           <div className={s.mainPagination}>

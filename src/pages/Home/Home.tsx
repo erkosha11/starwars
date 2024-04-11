@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
 import s from "./Home.module.scss";
 
-
 import { AnimatedBox } from "../../components/AnimatedBox/AnimatedBox";
 import { Button } from "../../shared/ui/Button/Button";
+
 export const Home = () => {
   return (
     <>
