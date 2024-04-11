@@ -4,16 +4,28 @@ import s from "./DetailShip.module.scss";
 import StarShipStore from "../../../store/starships-store";
 import { AnimatedBox } from "../../../components/AnimatedBox/AnimatedBox";
 import { Button } from "../../../shared/ui/Button/Button";
+import filmsStore from "../../../store/filmsStore";
+import FilmsDetail from "../../films/films.deteils";
+import { useEffect } from "react";
 
 export const DetailShip = observer(() => {
   const { index } = useParams<{ index?: string }>();
   const starshipIndex = parseInt(index || "0");
   const starship = StarShipStore.getDisplayedStarship()[starshipIndex];
 
+  useEffect(() => {
+    return () => {
+      filmsStore.resetDisplayCount();
+    };
+  }, []);
+
+  const loadMoreFilms = () => {
+    filmsStore.showMoreFilms();
+  };
+
   if (!starship) {
     return <div>Starship not found</div>;
   }
-
   return (
     <div className="container">
       <div className={s.detailContent}>
@@ -44,6 +56,14 @@ export const DetailShip = observer(() => {
             </div>
           </div>
         </AnimatedBox>
+      </div>
+      <div className={s.detailsFilm}>
+        {filmsStore.displayedFilms.map((film, index) => (
+          <FilmsDetail key={index} film={film} />
+        ))}
+        {filmsStore.displayCount < filmsStore.films.length && (
+          <Button onClick={loadMoreFilms}>ЕЩЕ</Button>
+        )}
       </div>
     </div>
   );

@@ -1,19 +1,31 @@
 import { useParams, Link } from "react-router-dom";
 import { observer } from "mobx-react-lite";
 import s from "./detail-people.module.scss";
-import peopleStore from "../../../store/people-store";
 import { AnimatedBox } from "../../../components/AnimatedBox/AnimatedBox";
 import { Button } from "../../../shared/ui/Button/Button";
+import FilmsDetail from "../../films/films.deteils.tsx";
+import peopleStore from "../../../store/people-store.ts";
+import filmsStore from "../../../store/filmsStore.ts";
+import { useEffect } from "react";
 
 export const PeopleDetails = observer(() => {
   const { index } = useParams<{ index?: string }>();
   const personIndex = parseInt(index || "0");
   const person = peopleStore.getDisplayedPeople()[personIndex];
 
+  useEffect(() => {
+    return () => {
+      filmsStore.resetDisplayCount();
+    };
+  }, []);
+
+  const loadMoreFilms = () => {
+    filmsStore.showMoreFilms();
+  };
+
   if (!person) {
     return <div>Person not found</div>;
   }
-
   return (
     <div className="container">
       <div className={s.detailContent}>
@@ -44,8 +56,15 @@ export const PeopleDetails = observer(() => {
               <p>Gender: {person.gender}</p>
             </div>
           </div>
-          <div className={s.detailsText}></div>
         </AnimatedBox>
+      </div>
+      <div className={s.detailsFilm}>
+        {filmsStore.displayedFilms.map((film, index) => (
+          <FilmsDetail key={index} film={film} />
+        ))}
+        {filmsStore.displayCount < filmsStore.films.length && (
+          <Button onClick={loadMoreFilms}>ЕЩЕ</Button>
+        )}
       </div>
     </div>
   );
