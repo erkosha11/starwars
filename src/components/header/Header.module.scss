@@ -1,6 +1,7 @@
 .Header {
   display: flex;
   justify-content: space-between;
+  flex-direction: row-reverse;
   align-items: center;
   gap: 15px;
 
@@ -9,5 +10,9 @@
   .headerBtns {
     display: flex;
     gap: 30px;
+
+    a.active  button{
+      background-color: #414241;
+    }
   }
 }

@@ -3,10 +3,9 @@ import "./App.scss";
 import { Home } from "../pages/Home/Home";
 import { Signup } from "../pages/Signup/Signup";
 import { Login } from "../pages/Login/Login";
-import PeoplePage from "../pages/PeoplePage/PeoplePage";
-import PersonDetails from "../pages/PersonDetail/PersonDetail";
-import { PeopleTestpage } from "../pages/PeopleTestpage/PeopleTestpage";
-import { PeopleDetails } from "../pages/PeopleTestpage/detailpeople/detail";
+
+import { People } from "../pages/People/People";
+import { PeopleDetails } from "../pages/People/detailpeople/detail-people";
 import { Starship } from "../pages/Starship/Starship";
 import { DetailShip } from "../pages/Starship/DetailShip/DetailShip";
 
@@ -17,10 +16,7 @@ function App() {
       <Route path={"/login"} element={<Login />} />
       <Route path={"/signup"} element={<Signup />} />
 
-      <Route path={"/people-page"} element={<PeoplePage />} />
-      <Route path="/person/:id" element={<PersonDetails />} />
-
-      <Route path={"/peopletest"} element={<PeopleTestpage />} />
+      <Route path={"/peopletest"} element={<People />} />
       <Route path="/people/:index" element={<PeopleDetails />} />
 
       <Route path={"/starship"} element={<Starship />} />
