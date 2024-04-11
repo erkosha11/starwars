@@ -1,18 +1,17 @@
 import { useParams, Link } from "react-router-dom";
 import { observer } from "mobx-react-lite";
 import s from "./DetailShip.module.scss";
-import { IoArrowBackCircleOutline } from "react-icons/io5";
 import StarShipStore from "../../../store/starship-store";
 import { AnimatedBox } from "../../../components/AnimatedBox/AnimatedBox";
 import { Button } from "../../../shared/ui/Button/Button";
 
 export const DetailShip = observer(() => {
   const { index } = useParams<{ index?: string }>();
-  const personIndex = parseInt(index || "0");
-  const person = StarShipStore.getDisplayedStarship()[personIndex];
+  const starshipIndex = parseInt(index || "0");
+  const starship = StarShipStore.getDisplayedStarship()[starshipIndex];
 
-  if (!person) {
-    return <div>Person not found</div>;
+  if (!starship) {
+    return <div>Starship not found</div>;
   }
 
   return (
@@ -28,20 +27,20 @@ export const DetailShip = observer(() => {
             </Link>
           </div>
           <div className={s.headerTitle}>
-            <h1>{person.name}</h1>
+            <h1>{starship.name}</h1>
           </div>
         </div>
         <AnimatedBox>
           <div className={s.detailsText}>
             <div>
-              <p>Model: {person.model}</p>
-              <p>Manufacturer: {person.manufacturer}</p>
-              <p>Cost in credits: {person.cost_in_credits}</p>
+              <p>Model: {starship.model}</p>
+              <p>Manufacturer: {starship.manufacturer}</p>
+              <p>Cost in credits: {starship.cost_in_credits}</p>
             </div>
             <div>
-              <p>Length: {person.length}</p>
-              <p>Speed: {person.max_atmosphering_speed}</p>
-              <p>Passengers: {person.passengers}</p>
+              <p>Length: {starship.length}</p>
+              <p>Speed: {starship.max_atmosphering_speed}</p>
+              <p>Passengers: {starship.passengers}</p>
             </div>
           </div>
         </AnimatedBox>

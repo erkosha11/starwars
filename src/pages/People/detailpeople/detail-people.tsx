@@ -1,7 +1,6 @@
 import { useParams, Link } from "react-router-dom";
 import { observer } from "mobx-react-lite";
-import s from "./detail.module.scss";
-import { IoArrowBackCircleOutline } from "react-icons/io5";
+import s from "./detail-people.module.scss";
 import peopleStore from "../../../store/test-store";
 import { AnimatedBox } from "../../../components/AnimatedBox/AnimatedBox";
 import { Button } from "../../../shared/ui/Button/Button";

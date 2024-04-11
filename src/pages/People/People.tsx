@@ -1,13 +1,13 @@
 import { observer } from "mobx-react-lite";
 import { useEffect } from "react";
 import { Pagination } from "antd";
-import s from "./peopletest.module.scss";
+import s from "./People.module.scss";
 import { AnimatedBox } from "../../components/AnimatedBox/AnimatedBox";
 import { Header } from "../../components/header/Header";
 import peopleStore from "../../store/test-store";
 import { Link } from "react-router-dom";
 
-export const PeopleTestpage = observer(() => {
+export const People = observer(() => {
   useEffect(() => {
     peopleStore.fetchPeople();
   }, []);
@@ -59,4 +59,4 @@ export const PeopleTestpage = observer(() => {
   );
 });
 
-export default PeopleTestpage;
+export default People;

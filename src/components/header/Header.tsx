@@ -3,7 +3,7 @@ import { useLocation } from "react-router-dom";
 import s from "./Header.module.scss";
 import { Button } from "../../shared/ui/Button/Button";
 import { Input } from "../../shared/ui/Input/Input";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 interface HeaderProps {
   onSearch: (text: string) => void;
@@ -45,12 +45,22 @@ export const Header: React.FC<HeaderProps> = ({ onSearch }) => {
   return (
     <div className={s.Header}>
       <div className={s.headerBtns}>
-        <Link to="/peopletest">
+        <NavLink
+          to="/peopletest"
+          className={({ isActive, isPending }) =>
+            isPending ? "pending" : isActive ? s.active : ""
+          }
+        >
           <Button>People</Button>
-        </Link>
-        <Link to="/starship">
+        </NavLink>
+        <NavLink
+          to="/starship"
+          className={({ isActive, isPending }) =>
+            isPending ? "pending" : isActive ? s.active : ""
+          }
+        >
           <Button>Starship</Button>
-        </Link>
+        </NavLink>
       </div>
       <div className={s.headerSearch}>
         <Input
