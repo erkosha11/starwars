@@ -44,6 +44,7 @@ export const PeopleDetails = observer(() => {
               <p>Gender: {person.gender}</p>
             </div>
           </div>
+          <div className={s.detailsText}></div>
         </AnimatedBox>
       </div>
     </div>
