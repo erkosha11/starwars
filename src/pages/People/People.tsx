@@ -6,7 +6,7 @@ import s from "./People.module.scss";
 import { AnimatedBox } from "../../components/AnimatedBox/AnimatedBox";
 import { Header } from "../../components/header/Header";
 import Skeleton from "../../shared/ui/Skeleton/Skeleton";
-import peopleStore from "../../store/test-store";
+import peopleStore from "../../store/people-store";
 
 export const People = observer(() => {
   useEffect(() => {
@@ -29,7 +29,7 @@ export const People = observer(() => {
           <AnimatedBox>
             <div className={s.mainItems}>
               <div>
-                {peopleStore.loading
+                {peopleStore.people.state === "pending"
                   ? [...new Array(4)].map((_, index) => (
                       <Skeleton key={index} />
                     ))
@@ -53,12 +53,14 @@ export const People = observer(() => {
             </div>
           </AnimatedBox>
           <div className={s.mainPagination}>
-            <Pagination
-              total={peopleStore.people.length}
-              pageSize={peopleStore.pageSize}
-              current={peopleStore.currentPage}
-              onChange={handlePageChange}
-            />
+            {!peopleStore.searchText && (
+              <Pagination
+                total={peopleStore.getTotalPages() * peopleStore.pageSize}
+                pageSize={peopleStore.pageSize}
+                current={peopleStore.currentPage}
+                onChange={handlePageChange}
+              />
+            )}
           </div>
         </div>
       </div>

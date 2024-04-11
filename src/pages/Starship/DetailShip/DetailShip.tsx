@@ -1,7 +1,7 @@
 import { useParams, Link } from "react-router-dom";
 import { observer } from "mobx-react-lite";
 import s from "./DetailShip.module.scss";
-import StarShipStore from "../../../store/starship-store";
+import StarShipStore from "../../../store/starships-store";
 import { AnimatedBox } from "../../../components/AnimatedBox/AnimatedBox";
 import { Button } from "../../../shared/ui/Button/Button";
 
