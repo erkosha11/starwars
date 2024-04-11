@@ -9,6 +9,7 @@ import { observer } from "mobx-react-lite";
 import { useEffect } from "react";
 import StarShipStore from "../../store/starship-store";
 import { Link } from "react-router-dom";
+import Skeleton from "../../shared/ui/Skeleton/Skeleton";
 
 export const Starship = observer(() => {
   useEffect(() => {
@@ -30,7 +31,13 @@ export const Starship = observer(() => {
         <div className={s.starshipContent}>
           <AnimatedBox>
             <div className={s.starshipItems}>
-              {StarShipStore.getDisplayedStarship().map((person, index) => (
+              <div>
+            {StarShipStore.loading ? (
+                [...new Array(4)].map((_, index) => (
+                  <Skeleton key={index} />
+                ))
+              ) : (
+              StarShipStore.getDisplayedStarship().map((person, index) => (
                 <Link
                   to={`/starship/${index}`}
                   style={{ textDecoration: "none", color: "inherit" }}
@@ -45,7 +52,9 @@ export const Starship = observer(() => {
                     </div>
                   </div>
                 </Link>
-              ))}
+              ))
+              )}
+              </div>
             </div>
           </AnimatedBox>
           <div className={s.mainPagination}>
