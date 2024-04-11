@@ -3,7 +3,8 @@
   flex-direction: column;
 
   width: 800px;
-  height: 600px;
+  min-height: 600px;
+  height: 100%;
 
   .Header {
     display: flex;
@@ -28,6 +29,12 @@
     flex-wrap: wrap;
     gap: 10px;
     width: 800px;
+    max-height: 540px;
     height: 540px;
+  }
+  .detailsFilm {
+    display: flex;
+    height: 200px;
+    width: 200px;
   }
 }
