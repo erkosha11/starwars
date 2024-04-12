@@ -6,7 +6,7 @@ import { typeFilms } from "../shared/types/typeFilms";
 
 class FilmsStore {
   filmsPromise: IPromiseBasedObservable<ApiResponse<typeFilms>>;
-  displayCount = 1;
+  displayCountFilms = 1;
 
   constructor() {
     makeAutoObservable(this);
@@ -25,17 +25,17 @@ class FilmsStore {
   }
 
   get displayedFilms() {
-    return this.films.slice(0, this.displayCount);
+    return this.films.slice(0, this.displayCountFilms);
   }
 
   showMoreFilms() {
-    if (this.displayCount < this.films.length) {
-      this.displayCount += 1;
+    if (this.displayCountFilms < this.films.length) {
+      this.displayCountFilms += 1;
     }
   }
 
-  resetDisplayCount() {
-    this.displayCount = 1; 
+  resetDisplayCountFilms() {
+    this.displayCountFilms = 1; 
   }
 }
 
