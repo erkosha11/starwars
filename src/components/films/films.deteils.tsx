@@ -12,7 +12,7 @@ const FilmsDetail = observer(({ film }: FilmsDetailProps) => {
   return (
     <>
       <div className={s.detailTitle}>
-        <h1>Title: {film.title}</h1>
+        <h1>{film.title}</h1>
       </div>
 
       <div>

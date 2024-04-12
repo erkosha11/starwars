@@ -61,27 +61,32 @@ export const DetailShip = observer(() => {
               <p>Passengers: {starship.passengers}</p>
             </div>
           </div>
+          <div className={s.detailsMore}>
+            <div className={s.detailsFilm}>
+              <h2>Films</h2>
+              {filmsStore.displayedFilms.map((film, index) => (
+                <FilmsDetail key={index} film={film} />
+              ))}
+              {filmsStore.displayCountFilms < filmsStore.films.length ? (
+                <Button onClick={loadMoreFilms}>ЕЩЕ</Button>
+              ) : (
+                <h2>Фильмы закончились, надеюсь вам понравилось</h2>
+              )}
+            </div>
+            <div className={s.detailPlanets}>
+            <h2>Planets</h2>
+              {planetsStore.displayedPlanet.map((planets, index) => (
+                <PlanetsDetail key={index} planets={planets} />
+              ))}
+              {planetsStore.displayCountPlanets <
+              planetsStore.planets.length ? (
+                <Button onClick={loadMorePlanets}>ЕЩЕ</Button>
+              ) : (
+                <h2>Приятного полета</h2>
+              )}
+            </div>
+          </div>
         </AnimatedBox>
-      </div>
-      <div className={s.detailsFilm}>
-        {filmsStore.displayedFilms.map((film, index) => (
-          <FilmsDetail key={index} film={film} />
-        ))}
-        {filmsStore.displayCountFilms < filmsStore.films.length ? (
-          <Button onClick={loadMoreFilms}>ЕЩЕ</Button>
-        ) : (
-          <h1>Фильмы закончились, надеюсь вам понравилось</h1>
-        )}
-      </div>
-      <div className={s.detailPlanets}>
-        {planetsStore.displayedPlanet.map((planets, index) => (
-          <PlanetsDetail key={index} planets={planets} />
-        ))}
-        {planetsStore.displayCountPlanets < planetsStore.planets.length ? (
-          <Button onClick={loadMorePlanets}>ЕЩЕ</Button>
-        ) : (
-          <h1>Приятного полета</h1>
-        )}
       </div>
     </div>
   );

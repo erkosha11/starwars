@@ -12,7 +12,7 @@ const PlanetsDetail = observer(({ planets }: PlanetsDetailProps) => {
   return (
     <>
       <div className={s.detailTitle}>
-        <h1>Title: {planets.name}</h1>
+        <h1>{planets.name}</h1>
       </div>
 
       <div>
