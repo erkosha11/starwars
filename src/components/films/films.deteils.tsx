@@ -1,13 +1,12 @@
-import React from "react";
 import { observer } from "mobx-react-lite";
 import { typeFilms } from "../../shared/types/typeFilms";
-import s from "../People/detailpeople/detail-people.module.scss";
+import s from "./films.module.scss";
 
 interface FilmsDetailProps {
   film: typeFilms | null;
 }
 
-const FilmsDetail: React.FC<FilmsDetailProps> = observer(({ film }) => {
+const FilmsDetail = observer(({ film }: FilmsDetailProps) => {
   if (!film) return <div>Film not found</div>;
 
   return (

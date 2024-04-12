@@ -4,9 +4,11 @@ import s from "./DetailShip.module.scss";
 import StarShipStore from "../../../store/starships-store";
 import { AnimatedBox } from "../../../components/AnimatedBox/AnimatedBox";
 import { Button } from "../../../shared/ui/Button/Button";
-import filmsStore from "../../../store/filmsStore";
-import FilmsDetail from "../../films/films.deteils";
+import filmsStore from "../../../store/films-store";
+import FilmsDetail from "../../../components/films/films.deteils";
 import { useEffect } from "react";
+import planetsStore from "../../../store/planets-store";
+import PlanetsDetail from "../../../components/planets/planets";
 
 export const DetailShip = observer(() => {
   const { index } = useParams<{ index?: string }>();
@@ -15,12 +17,16 @@ export const DetailShip = observer(() => {
 
   useEffect(() => {
     return () => {
-      filmsStore.resetDisplayCount();
+      filmsStore.resetDisplayCountFilms();
+      planetsStore.resetDisplayCountPlanets();
     };
   }, []);
 
   const loadMoreFilms = () => {
     filmsStore.showMoreFilms();
+  };
+  const loadMorePlanets = () => {
+    planetsStore.showMorePlanets();
   };
 
   if (!starship) {
@@ -61,8 +67,20 @@ export const DetailShip = observer(() => {
         {filmsStore.displayedFilms.map((film, index) => (
           <FilmsDetail key={index} film={film} />
         ))}
-        {filmsStore.displayCount < filmsStore.films.length && (
+        {filmsStore.displayCountFilms < filmsStore.films.length ? (
           <Button onClick={loadMoreFilms}>ЕЩЕ</Button>
+        ) : (
+          <h1>Фильмы закончились, надеюсь вам понравилось</h1>
+        )}
+      </div>
+      <div className={s.detailPlanets}>
+        {planetsStore.displayedPlanet.map((planets, index) => (
+          <PlanetsDetail key={index} planets={planets} />
+        ))}
+        {planetsStore.displayCountPlanets < planetsStore.planets.length ? (
+          <Button onClick={loadMorePlanets}>ЕЩЕ</Button>
+        ) : (
+          <h1>Приятного полета</h1>
         )}
       </div>
     </div>

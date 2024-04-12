@@ -1,20 +1,30 @@
 import { observer } from "mobx-react-lite";
 import { Link, useNavigate } from "react-router-dom";
-
 import { AnimatedBox } from "../../components/AnimatedBox/AnimatedBox";
 import { IoArrowBackCircleOutline } from "react-icons/io5";
 import s from "./Login.module.scss";
-
 import { Button } from "../../shared/ui/Button/Button";
 import { Input } from "../../shared/ui/Input/Input";
 import { inputStore } from "../../store/login-store";
 
 export const Login = observer(() => {
   const { inpData, inpDataErr, updateInpData } = inputStore;
-
   const navigate = useNavigate();
+
   const handleClick = () => {
-    inputStore.clickHandler(navigate);
+    if (!inpDataErr.loginErr && !inpDataErr.passwordErr) {
+      inputStore.clickHandler(navigate);
+    }
+  };
+
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (
+      event.key === "Enter" &&
+      !inpDataErr.loginErr &&
+      !inpDataErr.passwordErr
+    ) {
+      inputStore.clickHandler(navigate);
+    }
   };
 
   return (
@@ -38,6 +48,7 @@ export const Login = observer(() => {
                 placeholder="Username"
                 value={inpData.login}
                 maxLength={20}
+                onKeyDown={handleKeyDown}
               />
               {inpDataErr.loginErr !== "" && (
                 <span className={s.err}>{inpDataErr.loginErr}</span>
@@ -49,12 +60,13 @@ export const Login = observer(() => {
                 onChange={(e) => updateInpData(e.target.name, e.target.value)}
                 value={inpData.password}
                 maxLength={20}
+                onKeyDown={handleKeyDown}
               />
               {inpDataErr.passwordErr !== "" && (
                 <span className={s.err}>{inpDataErr.passwordErr}</span>
               )}
             </div>
-              <Button onClick={handleClick}>Log in</Button>
+            <Button onClick={handleClick}>Log in</Button>
           </div>
         </div>
       </AnimatedBox>

@@ -3,10 +3,12 @@ import { observer } from "mobx-react-lite";
 import s from "./detail-people.module.scss";
 import { AnimatedBox } from "../../../components/AnimatedBox/AnimatedBox";
 import { Button } from "../../../shared/ui/Button/Button";
-import FilmsDetail from "../../films/films.deteils.tsx";
+import FilmsDetail from "../../../components/films/films.deteils.tsx";
 import peopleStore from "../../../store/people-store.ts";
-import filmsStore from "../../../store/filmsStore.ts";
+import filmsStore from "../../../store/films-store.ts";
 import { useEffect } from "react";
+import planetsStore from "../../../store/planets-store.ts";
+import PlanetsDetail from "../../../components/planets/planets.tsx";
 
 export const PeopleDetails = observer(() => {
   const { index } = useParams<{ index?: string }>();
@@ -15,17 +17,22 @@ export const PeopleDetails = observer(() => {
 
   useEffect(() => {
     return () => {
-      filmsStore.resetDisplayCount();
+      filmsStore.resetDisplayCountFilms();
+      planetsStore.resetDisplayCountPlanets();
     };
   }, []);
 
   const loadMoreFilms = () => {
     filmsStore.showMoreFilms();
   };
+  const loadMorePlanets = () => {
+    planetsStore.showMorePlanets();
+  };
 
   if (!person) {
     return <div>Person not found</div>;
   }
+
   return (
     <div className="container">
       <div className={s.detailContent}>
@@ -62,8 +69,21 @@ export const PeopleDetails = observer(() => {
         {filmsStore.displayedFilms.map((film, index) => (
           <FilmsDetail key={index} film={film} />
         ))}
-        {filmsStore.displayCount < filmsStore.films.length && (
+        {filmsStore.displayCountFilms < filmsStore.films.length ? (
           <Button onClick={loadMoreFilms}>ЕЩЕ</Button>
+        ) : (
+          <h1>Фильмы закончились, надеюсь вам понравилось</h1>
+        )}
+      </div>
+
+      <div className={s.detailsPlanet}>
+        {planetsStore.displayedPlanet.map((planets, index) => (
+          <PlanetsDetail key={index} planets={planets} />
+        ))}
+        {planetsStore.displayCountPlanets < planetsStore.planets.length ? (
+          <Button onClick={loadMorePlanets}>ЕЩЕ</Button>
+        ) : (
+          <h1>Приятного полета</h1>
         )}
       </div>
     </div>

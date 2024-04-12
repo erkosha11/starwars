@@ -2,6 +2,13 @@
 
 html {
   scroll-behavior: smooth;
+  background-image: url("../assets/background.jpeg");
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+
+  min-height: 100vh;
 
   body {
     font-family: "Roboto", sans-serif;
@@ -24,7 +31,7 @@ html {
     background-color: rgb(77, 77, 77);
     width: 900px;
     min-height: 600px;
-    height: 100%;
+
     color: white;
     gap: 30px;
   }
