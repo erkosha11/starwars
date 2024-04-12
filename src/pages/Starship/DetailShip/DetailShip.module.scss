@@ -3,7 +3,6 @@
   flex-direction: column;
 
   width: 800px;
-  height: 600px;
 
   .Header {
     display: flex;
@@ -24,9 +23,48 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-wrap: wrap;
     gap: 10px;
-    width: 800px;
-    height: 540px;
+    margin-bottom: 10px;
+    border: 1px solid ;
+    border-radius: 30px;
+    padding: 15px;
+  }
+
+  .detailsMore{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+
+    h2{
+      border-radius: 30px;
+      background-color: gray;
+      padding: 15px;
+    }
+
+    .detailsFilm{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      text-align: center;
+      border: 1px solid ;
+      border-radius: 30px;
+      padding: 10px;
+      width: 800px;
+    }
+
+    .detailPlanets{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      text-align: center;
+      border: 1px solid ;
+      border-radius: 30px;
+      padding: 10px;
+      width: 800px;
+    }
   }
 }

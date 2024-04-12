@@ -26,15 +26,47 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-wrap: wrap;
     gap: 10px;
-    width: 800px;
-    max-height: 540px;
-    height: 540px;
+    margin-bottom: 10px;
+    border: 1px solid;
+    border-radius: 30px;
+    padding: 15px;
   }
-  .detailsFilm {
+  .detailsMore {
     display: flex;
-    height: 200px;
-    width: 200px;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+
+    h2 {
+      border-radius: 30px;
+      background-color: gray;
+      padding: 15px;
+    }
+
+    .detailsFilm {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      text-align: center;
+      border: 1px solid;
+      border-radius: 30px;
+      padding: 10px;
+      width: 800px;
+    }
+
+    .detailPlanets {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      text-align: center;
+      border: 1px solid;
+      border-radius: 30px;
+      padding: 10px;
+      width: 800px;
+    }
   }
 }
